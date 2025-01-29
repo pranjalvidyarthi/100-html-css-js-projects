@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 004 - Digital Clock</title>
+</head>
+<body>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: cursive;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-color: #333333;
+            
+        }
+
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 210px;
+            height: 60px;
+            background-color: aquamarine;
+            color: white;
+            border-radius: 7px;
+            box-shadow:3px 3px 2px black ;
+        }
+        .hours , 
+        .minutes, 
+        .seconds{
+            font-size: 25px;
+            font-weight: bold;
+            border: 1px solid rgb(177, 255, 22);
+            background-color: #a860e2;
+            box-shadow: 3px 3px 2px rgb(2, 0, 0);
+            border-radius: 5px;
+            padding: 1px 5px;
+        }
+
+        .dots{
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            
+        }
+    </style>
+    <div class="container">
+        <span class="hours" id="hour">00</span>
+        <span class="dots"><p>:</p></span>
+        <span class="minutes" id="minutes">00</span>
+        <span class="dots"><p>:</p></span>
+        <span class="seconds" id="seconds">00</span>
+        <span class="ampm" id="ampm">AM</span>
+    </div>
+
+    <script>
+      setInterval(()=>{
+ ///digital clock
+        let hours = document.getElementById('hour');
+        let seconds = document.getElementById('seconds');
+        let minutes = document.getElementById('minutes');
+        let ampm = document.getElementById('ampm');
+
+        let h = new Date().getHours();
+        let m  = new Date().getMinutes();
+        let s = new Date().getSeconds();
+
+        let am = h >=12 ? "PM" : "AM";
+        //24 ===> 12 hr:
+        if (h > 12){
+            h = h-12;
+        }
+        //zero before single digit
+
+        h = (h < 10) ? "0" + h : h
+        m = (m < 10) ? "0" + m : m
+        s = (s < 10) ? "0" + s : s
+        hours.innerHTML =h;
+        minutes.innerHTML =m;
+        seconds.innerHTML= s;
+        ampm.innerHTML = am;
+})
+
+    </script>
+</body>
+</html>

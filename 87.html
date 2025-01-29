@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 87/100 - Animated Number Spinner</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000000;
+    }
+    .box{
+        position: absolute;
+        width: 80px;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #2c2b2b70;
+        border-radius: 50px;
+        box-shadow: 0 5px 50px rgba(8, 1, 1, 0.808);
+    }
+    .spinner{
+        position: relative;
+        width: 40px;
+        gap: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        user-select: none;
+    }
+    .progress{
+        position: relative;
+        width: 10px;
+        background: #000000;
+        height: 300px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .progress #meter{
+        position: absolute;
+        width: 100%;
+        background: #0f0;
+        border-radius: 20px;
+        filter: drop-shadow(0 0 2.5px #0f0) drop-shadow(0 0 10px #0f0);
+        transition: 0.5s;
+        animation: animatecolor 2s linear infinite;
+    }
+    @keyframes animatecolor {
+        0%{
+            filter: hue-rotate(0deg);
+        }
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+    .btn{
+        position: relative;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 1.5em;
+        color: #fff;
+        border-radius: 50%;
+        text-shadow: 0 0 5px #ffff,
+        0 0 10px #ffff;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    .btn:active{
+        font-size: 1.25em;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+    }
+    #output{
+        position: relative;
+        color: #fff;
+        font-size: 2em;
+
+    }
+</style>
+<body>       
+<div class="box">
+    <div class="spinner">
+        <span id="output"></span>
+        <div class="progress">
+            <span id="meter"></span>
+        </div>
+        <div class="btn plus" onclick="plus();">+</div>
+        <div class="btn minus" onclick="minus();">-</div>
+    </div>
+</div>
+</body>
+<script>
+    let x = 0;
+    let output =  document.getElementById('output');
+    let meter = document.getElementById('meter');
+    output.innerHTML = x;
+
+    function plus(){
+        if(x >= 10){
+            return false;
+        }
+        output.innerHTML = ++x;
+        meter.style.height = x*10+ '%';
+    }
+
+    function minus(){
+        if (x <= 0){
+            return false;
+        }
+        output.innerHTML = --x;
+        meter.style.height = x*10+ '%';
+
+    }
+</script>
+</html>

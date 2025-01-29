@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 63/100 - Animated Text on Hover</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.911);
+        transform: scale(1.5);
+    }
+    .text{
+        padding: 15px 40px;
+        font-size: 3em;
+        color: #fff;
+        position: relative;
+        z-index: 0;
+        border-radius: 12px;
+        text-decoration: none;
+    }
+    .text::after{
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        border-radius: 10px;
+        top: 0;
+    }
+    .text::before{
+        content: '';
+        background: linear-gradient(25deg, rgb(231, 66, 16), rgb(7, 52, 255) , rgb(255, 22, 22), rgb(54, 255, 54), rgb(17, 0, 253) , rgb(162, 57, 231) , rgba(235, 20, 235, 0));
+        position:absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 600%;
+        border-radius: 10px;
+        z-index: -1;
+        height: calc(100% + 9px);
+        width: calc(100% + 4px);
+        filter: blur(8px);
+        transition: opacity .3s ease-in-out;
+        animation: ani 20s linear infinite;
+        border-radius: 10px;
+        opacity: 0;
+    }
+    @keyframes ani {
+        0%{
+            background-position: 0 0;
+            border-radius: 20px;
+        }
+        50%{
+            background-position: 400% 0;
+            border-radius: 500px;
+        }
+        100%{
+            background-position: 0 0;
+            border-radius: 0px;
+        }
+    }
+    .text:hover::before{
+        opacity: 1;
+    }
+</style>
+
+<body>
+    <a href="#" class="text">Pranjal Tech</a>
+</body>
+
+</html>

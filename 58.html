@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 58/100 - Awesome Cursor  Animation on Mousemove with CSS</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+        overflow: hidden;
+    }
+    i{
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: royalblue;
+        pointer-events: none;
+        animation: animate 2s linear forwards;
+        border-radius: 50%;
+
+    }
+    @keyframes animate {
+        0%{
+            opacity: 1;
+            background: royalblue;
+            transform: translate(0,0);
+        }
+        50%{
+            filter: hue-rotate(360deg);
+            width: 7px;
+            height: 7px;
+        }
+        100%{
+            opacity: 0;
+            background: royalblue;
+        }
+    }
+
+</style>
+<body>
+    
+    <script>
+        function spark(eveent){
+            let i = document.createElement('i');
+            i.style.left = (event.pageX) + 'px';
+            i.style.top = (event.pageY) + 'px';
+            // Appending this above function
+            document.body.appendChild(i);
+            setTimeout(() => {
+                document.body.removeChild(i);
+            }, 2000);
+        }
+
+        function getRandomTransitionValue(){
+            return `${Math.random() * 300 - 200}px`
+        }
+
+        document.addEventListener('mousemove' , spark);
+    </script>
+</body>
+</html>

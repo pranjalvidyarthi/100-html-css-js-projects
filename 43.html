@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 43/100- animation </title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        align-items: center;
+        background: #333;
+    }
+    .loader{
+        position: relative;
+        width: 400px;
+        height: 150px;
+        animation: animate1 24s steps(12)  linear infinite;
+    }
+    @keyframes animate1 {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+    h3{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2em;
+        font-weight: 300;
+        color: rgba(255,255,255,0.25);
+        text-transform: uppercase;
+    }
+
+    h3 b{
+        color: #fff;
+        font-weight: 500;
+        text-shadow: 0  0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #fff,
+        0 0 40px #fff,
+        0 0 50px #fff;
+    }
+    .loader span{
+        position: absolute;
+        top: -40px;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        transform: rotate(calc(30deg * var(--i)));
+    }
+    .loader span::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70px;
+        height: 70px;
+        background: rgba(255,255,255,0.15);
+    }
+    .loader span:nth-child(3n + 3)::before{
+        background-color: #fff;
+        box-shadow: 0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #fff,
+        0 0 40px #fff,
+        0 0 50px #fff;
+        animation: animate 2s linear infinite;
+        transform-origin: 75px;
+    }
+    @keyframes animate {
+        0%,25%{
+            transform: rotate(0deg);
+        }
+        75%,90%,100%{
+            transform: rotate(100deg);
+        }
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="loader">
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+            <span style="--i:4;"></span>
+            <span style="--i:5;"></span>
+            <span style="--i:6;"></span>
+            <span style="--i:7;"></span>
+            <span style="--i:8;"></span>
+            <span style="--i:9;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+        </div>
+        <h3>Pranjal <b>Tech</b></h3>
+    </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Cat Hands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="stylesheet" href="assets/reset.min.css">
+<link rel='stylesheet' href='https://codepen.io/jonny/pen/jQvLEr/b3e4dc7bad564ec9e18b5b0928f75587.css'><link rel="stylesheet" href="./style.css">
+
+<style>
+  html,
+body {
+    height: 100%;
+}
+
+body {
+    font-size: 60px;
+    font-weight: 900;
+    overflow: hidden;
+}
+
+.container {
+    align-items: center;
+    cursor: crosshair;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.line {
+    display: inline-block;
+    margin: 0 0.2em;
+}
+
+.cathands {
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+}
+
+.left-paw-wrapper,
+.right-paw-wrapper {
+    left: 50%;
+    position: absolute;
+    top: 700px;
+    transition: transform .15s cubic-bezier(0.175, 0.885, 0.425, 4);
+}
+.left-paw-wrapper[data-boost='true'],
+.right-paw-wrapper[data-boost='true']{
+    transition: transform 2s cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+.paw {
+    bottom: 590px;
+    height: 0;
+    left: 50%;
+    position: absolute;
+    width: 0;
+}
+.paw:before {
+    background: url('assets/img/paws.png') no-repeat 0 0;
+    content: "";
+    display: block;
+    height: 270px;
+    left: -40px;
+    position: absolute;
+    top: -224px;
+    width: 114px;
+}
+
+.left-paw,
+.right-paw {
+    bottom: 0;
+    height: 0;
+    left: 0;
+    position: absolute;
+    width: 0;
+}
+.left-paw:before,
+.right-paw:before {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/59639/paws.png') no-repeat 0 -272px;
+    bottom: -71px;
+    content: "";
+    display: block;
+    height: 728px;
+    left: -82px;
+    position: absolute;
+    width: 200px;
+}
+
+/* left paw */
+.left-paw-wrapper {
+    left: -320px;
+    transform: rotate(3deg);
+}
+.left-paw-wrapper[data-boost='true'] {
+    transform: rotate(-15deg);
+}
+.left-paw {
+    transform: rotate(13deg);
+    -webkit-animation: leftArm 1.5s ease-in-out 0s infinite alternate;
+            animation: leftArm 1.5s ease-in-out 0s infinite alternate;
+}
+.left-paw .paw {
+    -webkit-animation: leftPaw 2.25s ease-in-out 0s infinite alternate;
+            animation: leftPaw 2.25s ease-in-out 0s infinite alternate;
+    transform: rotate(3deg);
+}
+
+/* right paw */
+.right-paw-wrapper {
+    left: 320px;
+    transform: rotate(-3deg);
+}
+.right-paw-wrapper[data-boost='true'] {
+    transform: rotate(15deg);
+}
+.right-paw {
+    -webkit-animation: rightArm 2s ease-in-out 0s infinite alternate;
+            animation: rightArm 2s ease-in-out 0s infinite alternate;
+    transform: rotate(-13deg);
+}
+.right-paw:before {
+    transform: scaleX(-1);
+}
+.right-paw .paw {
+    transform: rotate(-3deg);
+}
+.right-paw .paw:before {
+    transform: scaleX(-1);
+}
+
+@-webkit-keyframes leftArm {
+    0% { transform: translate3d(0, 0, 0) rotate(12deg); }
+    100% { transform: translate3d(0, 10px, 0) rotate(13deg); }
+}
+
+@keyframes leftArm {
+    0% { transform: translate3d(0, 0, 0) rotate(12deg); }
+    100% { transform: translate3d(0, 10px, 0) rotate(13deg); }
+}
+
+@-webkit-keyframes leftPaw {
+    0% { transform: rotate(4deg); }
+    100% { transform: rotate(8deg); }
+}
+
+@keyframes leftPaw {
+    0% { transform: rotate(4deg); }
+    100% { transform: rotate(8deg); }
+}
+
+@-webkit-keyframes rightArm {
+    0% { transform: translate3d(0, 0, 0) rotate(-12deg); }
+    100% { transform: translate3d(0, 12px, 0) rotate(-13deg); }
+}
+
+@keyframes rightArm {
+    0% { transform: translate3d(0, 0, 0) rotate(-12deg); }
+    100% { transform: translate3d(0, 12px, 0) rotate(-13deg); }
+}
+
+@-webkit-keyframes rightPaw {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(-9deg); }
+}
+
+@keyframes rightPaw {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(-9deg); }
+}
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<!-- partial -->
+  <script src='assets/codepencathand.js'></script>
+  <script>
+    CatHands.start(document.body, {
+    title: 'Click & Hold'
+});
+  </script>
+
+</body>
+</html>

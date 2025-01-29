@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 32/100  - Animation </title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        pointer-events: none;
+    }
+
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: black;
+        filter: hue-rotate(70deg);
+    }
+
+    .loader{
+        position: relative;
+        transform: rotate(calc(45deg * var(--r)) );
+    }
+    .loader span{
+        position: absolute;
+        top: 0;
+        left: -200px;
+        width: 200px;
+        height: 2px;
+        transform-origin: right;
+        transform: rotate(calc(18deg * var(--i)));
+    }
+
+    .loader span::before{
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background:  #f00af0;
+        border-radius: 50%;
+        box-shadow: 0 0 10px  #f00af0,
+                0 0 20px  #f00af0,
+                0 0 40px  #f00af0,
+                0 0 60px  #f00af0,
+                0 0 80px  #f00af0,
+                0 0 100px  #f00af0;
+
+        animation: animate 5s linear infinite;
+        animation-delay: calc(-0.5s * var(--i));
+    }
+
+    @keyframes animate {
+        0%{
+            transform: translateX(200px) scale(1);
+        }
+        10%{
+            opacity: 1;
+        }
+        80%{
+            opacity: 1;
+        }
+    }
+</style>
+<body>
+    <section>
+        <div class="loader" id="l1" style="--r:1;">
+        </div>
+        <div class="loader" id="l2" style="--r:2;"></div>
+        <div class="loader" id="l3" style="--r:3;"></div>
+        <div class="loader" id="l4" style="--r:4;"></div>
+    </section>    
+
+    <script>
+    let loader1 = document.getElementById('l1');
+    for (var i = 0; i <= 20; i++) {
+        let span = document.createElement('span');
+        span.style.setProperty('--i', i);
+        loader1.appendChild(span)
+    }
+
+    let loader2 = document.getElementById('l2');
+    for (var i = 0; i <= 20; i++) {
+        let span = document.createElement('span');
+        span.style.setProperty('--i', i);
+        loader2.appendChild(span)
+    }
+
+    let loader3 = document.getElementById('l3');
+    for (var i = 0; i <= 20; i++) {
+        let span = document.createElement('span');
+        span.style.setProperty('--i', i);
+        loader3.appendChild(span)
+    }
+
+    let loader4 = document.getElementById('l4');
+    for (var i = 0; i <= 20; i++) {
+        let span = document.createElement('span');
+        span.style.setProperty('--i', i);
+        loader4.appendChild(span)
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 73/100 - JavaScript Animated background</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .sec{
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .sec .box {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        background: #222;
+    }
+    .animate{
+        animation: animate 1s linear forwards;
+    }
+    @keyframes animate {
+        0%{
+            filter: hue-rotate(0deg);
+        }
+        50%{
+            background: #0f0;
+        }
+        100%{
+            filter: hue-rotate(360deg);
+        }
+    }
+</style>
+<body>
+<section class="sec">
+</section>
+
+</body>
+<script>
+    for (let i = 1; i <= 4550; i++){
+        let box = document.createElement('div');
+        box.classList.add('box');
+        document.querySelector('.sec').appendChild(box);
+    }
+
+    function animateBx(){
+        let boxes = document.querySelectorAll('.box');
+        let num = Math.floor(Math.random() * boxes.length);
+        boxes[num].classList.toggle('animate')
+    }
+
+    setInterval(animateBx);
+</script>
+</html>

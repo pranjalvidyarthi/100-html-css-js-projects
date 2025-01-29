@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 59/100 - Change background with drop -menu </title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ff2323;
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24vw;
+        font-weight: 700;
+        white-space: nowrap;
+        user-select: none;
+        color: rgba(0,0,0,0.1);
+    }
+    .color{
+        position: relative;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        box-shadow:  0 15px 25px rgba(0,0,0,0.1);
+        border-right: 10px solid #fff;
+        border-left: 2px solid black;
+
+        width: 200px;
+        transition: 0.5s;
+    }
+</style>
+<body>
+    <div class="bg">Red</div>
+        <select name="" class="color" onchange="changeColor(this)">
+            <option value="#ff2323">Red</option>
+            <option value=" #2f32ff">Blue</option>
+            <option value="#66ff00">Green</option>
+            <option value="#f8d40a">Yellow</option>
+        </select>
+<script>
+    function changeColor(getColor){
+        let bg = document.querySelector('.bg');
+        let color = getColor.value;
+        let text = getColor.options[getColor.selectedIndex].text;
+        bg.style.background = color;
+        bg.innerHTML = text;
+    }
+</script>
+</body>
+</html>

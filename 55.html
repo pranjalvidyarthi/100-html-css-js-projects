@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 55/100 - New to You Youtube Button</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    a{
+        position: relative;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(45deg , #0ce39e, #69007f, #fc0987);
+        padding: 14px 25px;
+        border-radius: 10px;
+        font-size: 2em;
+    }
+    a span{
+        position: relative;
+        z-index: 1;
+    }
+    a::before{
+        content: '';
+        position: absolute;
+        inset: 1px;
+        background: #272727;
+        border-radius: 10px;
+        transition: 0.5s;
+    }
+    a:hover::before{
+        opacity: 0.7;
+    }
+    a::after{
+        content: '';
+        position: absolute;
+        inset: 0px;
+        background: linear-gradient(45deg, #0ce39e, #69007f, #fc0987);
+        border-radius: 10px;
+        filter: blur(20px);
+        transition: 0.5s;
+        opacity: 0;
+    }
+    a:hover::after{
+        opacity: 1;
+    }
+</style>
+<body>
+    <a href="#"><span>New to You</span></a>
+</body>
+</html>

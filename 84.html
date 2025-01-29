@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 84/100 - Multiple Particles Animation </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        background: #000;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .circle{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(90deg , #f00 , #0ff);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .particles{
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(90deg , #f00 , #0ff);
+        z-index: -1;
+        animation: animate 2s ease forwards;
+    }
+    @keyframes animate {
+        0%,100%{
+            transform: translate(0,0);
+        }
+        50%{
+            transform: translate(var(--x), var(--y));
+        }
+    }
+</style>
+<body>
+<div class="circle">
+</div>
+<script>
+    let circle = document.querySelector('.circle');
+    circle.addEventListener('click',function(){
+        for(let i = 0; i < 50; i++){
+            let particles = document.createElement('i');
+            particles.classList.add('particles');
+
+            let randomX = (Math.random() - 0.5) * window.innerWidth;
+            let randomY = (Math.random() - 0.5) * window.innerHeight;
+
+            particles.style.setProperty('--x', randomX+'px');
+            particles.style.setProperty('--y', randomY+'px');
+
+            let randomSize = Math.random() * 60 + 10;
+            particles.style.widows = randomSize + 'px';
+            particles.style.height = randomSize + 'px';
+            
+            document.body.appendChild(particles);
+
+            setTimeout(() => {
+                particles.remove()
+            }, 5000);
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 66/100 - Transparent Digtial Clock</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+        overflow: hidden;
+    }
+
+    .outline {
+        width: 200px;
+        height: 100px;
+        padding: 0.6em 2em;
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .outline:before {
+        content: "";
+        background: linear-gradient(45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-outline 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-outline {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .outline:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #160000d3;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    #time {
+        display: flex;
+        font-size: 2em;
+        font-weight: 600;
+        width: 200px;
+        height: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #time div {
+        position: relative;
+        width: 60px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    #time div:nth-child(1)::after,
+    #time div:nth-child(2)::after {
+        content: ':';
+        position: absolute;
+        right: -4px;
+    }
+
+    #time div:last-child {
+        font-size: 0.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+    #time div:nth-child(2)::after {
+        animation: animate 1s steps(1) infinite;
+    }
+    @keyframes animate {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+</style>
+<body>
+    <div class="outline">
+        <div id="time">
+            <div id="hour" style="--clr:#ff2972;">00</div>
+            <div id="minutes" style="--clr:#fcc800;">00</div>
+            <div id="seconds" style="--clr:#04fc43;">00</div>
+            <div id="ampm">AM</div>
+        </div>
+    </div>
+    <script>
+        setInterval(() => {
+            ///digital clock
+            let hours = document.getElementById('hour');
+            let seconds = document.getElementById('seconds');
+            let minutes = document.getElementById('minutes');
+            let ampm = document.getElementById('ampm');
+            let h = new Date().getHours();
+            let m = new Date().getMinutes();
+            let s = new Date().getSeconds();
+            let am = h >= 12 ? "PM" : "AM";
+            //24 ===> 12 hr:
+            if (h > 12) {
+                h = h - 12;
+            }
+            //zero before single digit
+            h = (h < 10) ? "0" + h : h
+            m = (m < 10) ? "0" + m : m
+            s = (s < 10) ? "0" + s : s
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am;
+        })
+    </script>
+</body>
+</html>

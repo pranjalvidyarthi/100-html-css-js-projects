@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 89/100 - HTML CSS Text Hover Animation effects
+    </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+    }
+    ul{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    ul li{
+        list-style: none;
+    }
+    ul li .text{
+        font-size: 4em;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 800;
+        line-height: 1em;
+        display: flex;
+        align-items: center;
+    }
+    ul li .text span:not(:first-child){
+        letter-spacing: 0.1em;
+    }
+    ul li .text span{
+        -webkit-text-stroke: 1px #FFF;
+        color: transparent;
+        position: relative;
+    }
+    ul li .text span:nth-child(1){
+        width: 70px;
+        height: 70px;
+        background-color: var(--clr);
+        color: #222;
+        -webkit-text-stroke: 0px #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5px;
+    }
+    ul li .text:hover span:not(:first-child){
+        color: var(--clr);
+        transition: 1s;
+        transform: rotateX(360deg);
+        -webkit-text-stroke: 1px transparent;
+    }
+
+</style>
+<body>
+    <ul>
+        <li style="--clr:#e6444f;"><a href="#" class="text">Pranjal</a></li>
+        <li style="--clr:#af579b;"><a href="#" class="text">Tech</a></li>
+    </ul>
+</body>
+<script>
+    const texts = document.querySelectorAll('.text');
+    texts.forEach(text => {
+        const spans = Array.from(text.textContent.trim()).map
+        (char => `<span>${char === '' ? '&nbsp;' :char}</span>`).join('');
+        text.innerHTML = spans;
+
+        const spanList = text.querySelectorAll('span');
+        spanList.forEach((span,index) => {
+            span.addEventListener('mouseover', () => {
+                spanList.forEach((s,i) => {
+                    const distance = Math.abs(index - i);
+                    const delay = (distance * 0.1).toFixed(1);
+                    s.style.transitionDelay = `${delay}s`;
+                })
+            })
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-002 Hover Button</title>
+    <script src="assets/fontawesome.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background: #3333;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .box{
+        width: 220px;
+        height: 60px;
+        border-radius: 50px;
+        position: relative;
+        color: #aaaaaa;
+        background-color: #222222;
+        text-decoration: none;
+        display: flex;
+        align-items:  center;
+        justify-content: center;
+        border-top: 1px solid rgba(255,255,255,0.35);
+        border-left: 1px solid rgba(255,255,255,0.35);
+        transition: 0.5s;
+    }
+
+    .box:hover{
+        padding-left: 0px;
+        padding-right: 40px;
+    }
+    .box span{
+        position: absolute;
+        left: 5px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        color: wheat;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0,201,100);
+        transition: 0.5s ease-in-out;
+    }
+    .box:hover span{
+        left: calc(100% - 50px);
+    }
+</style>
+<body>
+    <a href="#" class="box">Hover Mouse
+        <span><i class="fa-solid fa-arrow-right"></i>
+        </span>
+    </a>
+</body>
+</html>

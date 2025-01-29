@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Day 79/100 - Password Generator</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    .container{
+        background-color: white;
+        padding: 30px;
+        display: grid;
+        gap: 40px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 20px #f00 ;
+    }
+    .container h2{
+        text-align: center;
+        font-size: 25px;
+        color: black;
+        font-family: cursive;
+    }
+
+    input{
+        padding: 20px;
+        user-select: none;
+        height: 50px;
+        width: 350px;
+        border-radius: 5px;
+        border: none;
+        border: 2px solid #f00;
+        outline: none;
+        font-size: 20px;
+    }
+    input::placeholder{
+        font-size: 20px;
+    }
+    .btns{
+        display: flex;
+        justify-content: space-between;
+    }
+    .btn{
+        font-size: 18px;
+        padding: 13px  50px;
+        border: 2px solid #f00;
+        background: #f00;
+        color: #fff;
+        border-radius: 25px;
+        transition: 0.5s;
+    }
+    .btn:hover{
+        background: #000;
+    }
+</style>
+<div class="container">
+    <h2>
+        Generate Your Password
+    </h2>
+    <input type="text" id="password" placeholder="Password" readonly>
+    <div class="btns">
+        <div class="btn" onclick="genPass()">Generate</div>
+        <a href="#" onclick="copypass()" class="btn" style="text-decoration: none;">Copy</a>
+    </div>
+</div>
+</body>
+<script>
+    var Password = document.getElementById('password');
+    function genPass(){
+        var chars = "1234567890abcdefghijkmnopqrstuvwxyz@#POIUYTREWQASDFGHJKLMNBVCXZ" ;
+        var passlenght = 10;
+        var password = "" ;
+        for(var i = 0; i < passlenght; i++){
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            password +=
+            chars.substring(randomNumber, randomNumber + 1)
+        }
+        document.getElementById("password").value = password;
+        console.log("Generated Password")
+        console.log(document.getElementById("password").value = password)
+    }
+    
+    // Copy Function
+    function copypass(){
+        var copyText = document.getElementById("password");
+        copyText.select();
+        document.execCommand("copy");
+        console.log("Element Copy sucssfully")
+    }
+</script>
+
+</html>

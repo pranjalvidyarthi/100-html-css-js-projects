@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 64/100 - Analog Clock 2.0 {remake}</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+        overflow: hidden;
+    }
+
+    .clock {
+        width: 350px;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff00 url(assets/img/clock.png);
+        background-size: cover;
+        border-radius: 50%;
+        border: 2px solid black;
+    }
+
+    .clock::before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: #000;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        z-index: 100000;
+    }
+
+    .hour,
+    .min,
+    .sec {
+        position: absolute;
+
+    }
+
+    .hour,
+    .hr {
+        width: 160px;
+        height: 160px;
+    }
+
+    .min,
+    .mn {
+        width: 190px;
+        height: 190px;
+    }
+
+    .sec,
+    .sc {
+        width: 230px;
+        height: 230px;
+    }
+
+    .hr,
+    .mn,
+    .sc {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .hr::before {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 80px;
+        background-color: aquamarine;
+        border-radius: 6px 6px 0 0;
+        z-index: 10;
+    }
+
+    .mn::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        height: 90px;
+        background-color: rgb(124, 182, 31);
+        border-radius: 6px 6px 0 0;
+        z-index: 11;
+    }
+
+    .sc::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 110px;
+        background-color: rgb(152, 79, 247);
+        border-radius: 6px 6px 0 0;
+        z-index: 12;
+    }
+    .ring{
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        animation: ani 2s linear infinite;
+    }
+    .ring::before{
+        position: absolute;
+        content: '';
+        left: 0;
+        height: 100%;
+        top: 0;
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(255,255,255,0.3);
+    }
+    @keyframes ani {
+        0%{
+            transform: rotate(0deg);
+            box-shadow: 1px 5px 2px #e65c00;
+        }
+        50%{
+            transform: rotate(180deg);
+            box-shadow: 1px 5px 2px #18b201;
+        }
+        100%{
+            transform: rotate(360deg);
+            box-shadow: 1px 5px 2px #e65c00;
+        }
+    }
+</style>
+
+<body>
+   
+        <div class="ring"></div>
+
+        <div class="clock">
+            <div class="hour">
+                <div class="hr" id="hr"></div>
+            </div>
+            <div class="min">
+                <div class="mn" id="mn"></div>
+            </div>
+            <div class="sec">
+                <div class="sc" id="sc"></div>
+            </div>
+        </div>
+
+    <script>
+        const deg = 6;
+        const hr = document.querySelector("#hr");
+        const mn = document.querySelector("#mn");
+        const sc = document.querySelector('#sc');
+
+        setInterval(() => {
+            let day = new Date();
+            let hh = day.getHours() * 30;
+            let mm = day.getMinutes() * deg;
+            let ss = day.getSeconds() * deg;
+            hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
+            mn.style.transform = `rotateZ(${mm}deg)`;
+            sc.style.transform = `rotateZ(${ss}deg)`;
+        });
+    </script>
+</body>
+
+</html>

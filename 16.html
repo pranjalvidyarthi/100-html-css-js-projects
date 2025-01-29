@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 17 - Bulb on off</title>
+</head>
+<body>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: cursive;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3333;
+        }
+        .bulb{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            width: 200px;
+        }
+        img{
+            height: 200px;
+        }
+        .switch{
+            width: 200px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 21px;
+        }
+
+        button{
+            border: none;
+            background-color: royalblue;
+            color: white;
+            padding: 7px 15px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: white;
+            color: #333;
+        }
+        #on{
+            display: none;
+        }
+    </style>
+    <h1 style="font-size: 20px; display: flex; margin-bottom: 300px; text-align: center; justify-content: center;">Pranjal Tech</h1>
+    <div class="container">
+        <div class="bulb">
+            <div id="off">
+                <img src="assets/img/bulboff.gif" alt="Off">
+            </div>
+            <div id="on">
+                <img src="assets/img/bulbon.gif" alt="ON">
+            </div>
+            <div class="switch">
+                <button onclick="on()">ON</button>
+                <button onclick="off()">OFF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var bulbOn = document.getElementById('on');
+        var bulbOff = document.getElementById('off');
+
+        function on(){
+            bulbOn.style.display = 'block';
+            bulbOff.style.display = 'none';
+        }
+
+        function off(){
+            bulbOn.style.display = 'none';
+            bulbOff.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 39/100 - Profile Card UI </title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000000;
+    }
+
+    .card{
+        position: relative;
+        width: 350px;
+        height: 190px;
+        background: #333;
+        transition: 0.5s;
+    }
+    .card:hover{
+        height: 450px;
+    }
+
+    .card .lines{
+        position: absolute;
+        inset: 0;
+        background: #000;
+        overflow: hidden;
+    }
+    .card .lines::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        height: 120px;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(transparent, #45f3ff, #45f3ff, #45f3ff , transparent);
+        animation: animate 4s linear infinite;
+    }
+
+    @keyframes animate {
+        0%{
+            transform: translate(-50% , -50%) rotate(0deg);
+        }
+        100%{
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+    .card .lines::after{
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: #0b65ec;
+    }
+    .card .imgbx{
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 150px;
+        background: #dd0000;
+        transition: 0.5s;
+        z-index: 10;
+        overflow: hidden;
+    }
+    .card:hover .imgbx{
+        width: 250px;
+        height: 250px;
+    }
+    .card .imgbx::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        height: 150px;
+        transform: translate(-50% , -50%);
+        background:  #2e01f5;
+        animation: animate2 6s linear infinite;
+    }
+    @keyframes animate2 {
+        0%{
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+        100%{
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+    }
+    .card .imgbx::after{
+        content: '';
+        position: absolute;
+        inset: 3px;
+        background: #000000;
+    }
+    .card .imgbx img{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 1;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        /* filter: grayscale(1); */
+    }
+    .card .content{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+    .card .content .details{
+        padding: 40px;
+        text-align: center;
+        width: 100%;
+        transition: 0.5s;
+        transform: translateY(145px);
+    }
+
+    .card:hover .content .details{
+        transform: translateY(0px);
+    }
+
+    .card .content .details h2{
+        font-size: 1.25em;
+        font-weight: 600;
+        color: #45f3ff;
+        line-height: 1.2em;
+    }
+    .card .content .details h2 span{
+        font-size: 0.75em;
+        font-weight: 500;
+        color: #fff;
+    }
+    .card .content .details .data{
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+    .card .content .details .data h3 span{
+        font-size: .85em;
+        font-weight: 400;
+        color: #fff;
+
+    }
+    .card .content .details .actionBtn{
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+    }
+    .card .content .details .actionBtn button{
+        padding: 10px 30px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 1em;
+        font-weight: 500;
+        background: #45f3ff;
+        cursor: pointer;
+        color: #222;
+        opacity: 0.9;
+    }
+    .card .content .actionBtn button:nth-child(2){
+        background: #fff;
+    }
+    .card .content .actionBtn .actionBtn:hover{
+        opacity: 1;
+    }
+</style>
+
+<body>
+   <div class="card"> 
+    <div class="lines"></div> 
+<div class="imgbx"> <img src="assets/img/pranjal.png" alt="Pranjal Vidyarathi"></div>
+<div class="content">
+    <div class="details">
+        <h2>Pranjal Vidyarthi <br><span>Student</span> </h2>
+        <div class="data">
+            <h3 style="color: #45f3ff;">45 <br> <span> Subscribers</span></h3>
+            <h3 style="color: #45f3ff;">8.7k <br> <span>Views</span></h3>
+            <h3 style="color: #45f3ff;">46 <br> <span>Videos Uploaded</span></h3>
+        </div>
+
+        <div class="actionBtn">
+            <button>Subscriber</button>
+            <button>Message</button>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

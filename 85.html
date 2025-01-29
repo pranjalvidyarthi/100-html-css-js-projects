@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 85/100 - Quick CSS Animnation effects </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    .loader{
+        position: relative;
+        width: 150px;
+        height: 150px;
+        background: #03e903;
+        transition: 0.5s;
+  
+    }
+    .loader div{
+        position: absolute;
+        width: 100%;
+        top: -100%;
+        left: 0;
+        height: 100%;
+        border: 4px solid #03e903;
+        transition: 0.5s;
+        transform-origin: bottom right;
+        animation: animate 2s ease-in infinite;
+    }
+    .loader div:nth-child(2){
+        transform-origin: top left;
+        top: 100%;
+        left: 0;
+    }
+    .loader div:nth-child(3){
+        top: 0;
+        left: 100%;
+        transform-origin: bottom left;
+    }
+    .loader div:nth-child(4){
+        transform-origin: top right;
+        top: 0;
+        left: -100%;
+    }
+    @keyframes animate {
+        0%{
+            transform: rotate(0deg);
+        }
+        50%,100%{
+            transform: rotate(180deg);
+        }
+    }
+    .loader:hover,
+    .loader:hover div{
+        background: #03e903;
+        box-shadow: 0 0 5px #03e903,
+        0 0 25px #03e903,
+        0 0 50px #03e903,
+        0 0 200px #03e903;
+    }
+</style>
+<body>
+<div class="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</body>
+</html>

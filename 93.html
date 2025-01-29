@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 93/100 - Chalk Handwritting Effects</title>
+</head>
+<style>
+    .box {
+  text-transform: uppercase;
+  color: #0000;
+  font-family: sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  background: 
+    repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
+    repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 50%/2500px 2500px;
+  background-blend-mode: difference;
+  mix-blend-mode: lighten;
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  background: #3c7455;
+}
+
+html {
+  background: #fff;
+}
+</style>
+<body>
+    <div class="box">Text Effect</div>
+</body>
+</html>

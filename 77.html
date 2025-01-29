@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 77/100 - Geometrical Loading Screen </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    .pl{
+        margin: auto;
+        position: relative;
+        width: 8em;
+        height: 8em;
+    }
+    .pl::before, .pl::after{
+        animation: pl-before 2.5s cubic-bezier(0.65,0,0.35,1) infinite;
+        background: #fff;
+        content: '';
+        position: absolute;
+        display: block;
+        top: 75%;
+        left: 50%;
+        width: 75%;
+        height: 75%;
+        transform-origin: 100% 100%;
+    }
+    .pl::after{
+        animation: pl-after;
+    }
+    @keyframes pl-before {
+        from{
+            transform: rotate(0) translate(-100% , -100%) rotate(-90deg);
+        }
+        20%{
+            transform: rotate(0) translate(-100%, -100%) rotate(90deg);
+        }
+        40%{
+            transform: rotate(0) translate(-300% , -100%) rotate(90deg);
+        }
+        60%{
+            transform: rotate(90deg) translate(-300%, -100%) rotate(-90deg);
+        }
+        80%{
+            transform: rotate(90deg) translate(-100%, -100%) rotate(90deg);
+        
+        }
+        to{
+            transform: rotate(90deg) translate(-100%, 100%) rotate(90deg);
+        }
+        
+    }
+    @keyframes pl-after {
+        from, 20%{
+            transform: rotate(0) scale(1, 1);
+        }
+        40%{
+            transform: rotate(0) scale(3,1);
+        }
+        60%{
+            transform: rotate(90deg) scale(3,1);
+        }
+        80%{
+            transform: rotate(90deg) scale(1,1);
+        }
+        to{
+            transform: rotate(90deg) scale(1,1) translate(0, 200%);
+        }
+    }
+</style>
+<body>
+<div class="pl"></div>
+</body>
+
+</html>

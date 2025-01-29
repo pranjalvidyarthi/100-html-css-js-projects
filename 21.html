@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 21/100 - Text Animation</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: cursive;
+    }
+
+    section {
+        position: relative;
+        height: 100vh;
+        background-color: #1c0101;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    h2 {
+        font-size: 5em;
+        text-transform: capitalize;
+        color: #f00;
+        display: flex;
+        
+    }
+
+    h2 span {
+        transition: 1.5s;
+        text-shadow: 0 0 25px rgb(255, 0, 0);
+        cursor: pointer;
+    }
+
+    h2:hover span {
+        filter: blur(20px);
+        opacity: 0;
+        transform: scale(2) translateX(-50%);
+    }
+</style>
+
+<body>
+    <section>
+        
+        
+        <h2 id="pranjal-tech"></h2>
+    </section>
+    <script>
+        let text = "Pranjal Tech";
+
+        let h2 = document.getElementById('pranjal-tech');
+
+
+        text.split('').forEach((char, index) => {
+            let span = document.createElement('span');
+            span.textContent = char === ' ' ? `\u00A0\u00A0` : char;
+
+            span.style.transitionDelay = `${(index % 10) * 0.1}s`;
+            h2.appendChild(span);
+        })
+    </script>
+</body>
+
+</html>

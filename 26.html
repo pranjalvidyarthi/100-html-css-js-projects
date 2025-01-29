@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 26/100 || Animated Magnetic Background</title>
+</head>
+<style>
+    *
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #222;
+    }
+
+    .box {
+        position: relative;
+        width: 400px;
+        height: 300px;
+    }
+
+    .box::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-conic-gradient(from 0deg #0f0, #ff0, #0ff, #f0f, #0ff);
+        border-radius: 20px;
+        animation: rotate 4s linear infinite;
+    }
+
+    .box::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-conic-gradient(from 0deg #0f0, #ff0, #0ff, #f0f, #0ff);
+        border-radius: 20px;
+        animation: rotate 4s linear infinite;
+        filter: blur(40px);
+        opacity: 0.75;
+    }
+
+    .box span {
+        position: absolute;
+        inset: 4px;
+        background: #222;
+    }
+</style>
+
+<body>
+    <div class="box"> <span></span></div>
+</body>
+
+</html>

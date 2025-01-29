@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 36/100 - Improving Loading animation..</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background: black;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .loading{
+        position: relative;
+        display: flex;
+    }
+    .loading span{
+        position: absolute;
+        top: -150px;
+        width: 5px;
+        height: 40px;
+        transform: rotate(calc(var(--i) * 18deg));
+        transform-origin: 0 150px;
+    }
+    .loading span::before{
+        content: '';
+        position: absolute;
+        inset: 0;
+        animation: ani 8s  linear infinite;
+        transition: 0.2s;
+        animation-delay: calc(var(--i) * 0.1s);
+    }
+    @keyframes ani {
+        0%{
+            background: #0f0;
+            box-shadow: 0 0 5px #0f0,
+            0 0 15px #0f0,
+            0 0 30px #0f0,
+            0 0 50px #0f0;
+            rotate: 0deg;
+        }
+        20%{
+            background: #0f0;
+            box-shadow: 0 0 5px #0f0,
+            0 0 15px #0f0,
+            0 0 30px #0f0,
+            0 0 50px #0f0;
+            rotate: 0deg;
+        }
+        40%{
+            background: #0f0;
+            box-shadow: 0 0 5px #0f0,
+            0 0 15px #0f0,
+            0 0 30px #0f0,
+            0 0 50px #0f0;
+            rotate: 90deg;
+            filter: hue-rotate(0deg);
+        }
+        80%{
+            background: #0f0;
+            box-shadow: 0 0 5px #0f0,
+            0 0 15px #0f0,
+            0 0 30px #0f0,
+            0 0 50px #0f0;
+            rotate: 90deg;
+            filter: hue-rotate(360deg);
+            transform: scale(1);
+        }
+        90%{
+            box-shadow: none;
+            rotate: 90deg;
+        }
+        90.1%,100%{
+            box-shadow: none;
+            background: transparent;
+        }
+    }
+</style>
+<body>
+    <div class="loading" id="loader">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+        <span style="--i:8;"></span>
+        <span  style="--i:9;"></span>
+        <span  style="--i:10;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:18;"></span>
+        <span  style="--i:19;"></span>
+        <span  style="--i:20;"></span>
+    </div>
+</body>
+</html>

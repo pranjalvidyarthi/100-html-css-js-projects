@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 69/100 - Card Hover Effect </title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000000;
+  }
+  .card{
+    position: relative;
+    width: 600px;
+    height: 350px;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 20px;
+    align-items: center;
+
+  }
+  .card img{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 400px;
+    transition: 0.5s;
+  }
+  .card:hover img{
+    left: 80%;
+    height: 500px;
+    
+
+  }
+  .card .content{
+    position: relative;
+    width: 50%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+  }
+  .card:hover .content{
+    opacity: 1;
+    visibility: visible;
+    left: 0%;
+
+  }
+  .card .content h2{
+    color: #fff;
+    font-size: 2.5em;
+    line-height: 1em;
+  }
+  .card .content p{
+    color: #fff;
+  }
+  .card .content a{
+    position: relative;
+    display: inline-block;
+    color: #111;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #fff;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+</style>
+
+<body>
+  <div class="card">
+    <div class="content">
+      <h2>Iron Man</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet et, necessitatibus ex deserunt voluptate, mollitia obcaecati deleniti iste quia quisquam eaque earum ratione vel atque quos eligendi officiis architecto culpa totam laborum minus molestiae fugiat. Qui, aspernatur quo laboriosam vero recusandae eius accusantium, deleniti libero maxime debitis quia quae?</p>
+      <a href="#">Read More</a>
+    </div>
+    <img src="assets/img/imgbin_iron-man-png.png" alt="">
+
+  </div>
+</body>
+
+</html>

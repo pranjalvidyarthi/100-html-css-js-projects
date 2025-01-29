@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 25/100 || Image Slider</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #262626;
+    }
+    .box{
+        position: relative;
+        width: 200px;
+        height: 300px;
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+    }
+    .box span{
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background:#fff;
+        transform: rotateY(calc(var(--i) * 45deg)) translateZ(240px);
+        -webkit-box-reflect: below 0px linear-gradient(transparent);
+    }
+
+    .box span img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% ;
+        object-fit: cover;
+    }
+    .box span::before{
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        box-shadow: inset 0 0 15px rgba(0 , 0 , 0 ,0.1);
+    }
+</style>
+<body>
+    <div class="box">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+        <span style="--i:8;"></span>
+    </div>
+
+<script>
+    let box = document.querySelector('.box');
+    window.onmousemove = function (e) {
+        let x = e.clientX;
+        box.style.transform = "perspective(1000px) rotateY("+ x + "deg)";
+        
+    }
+</script>
+</body>
+</html>

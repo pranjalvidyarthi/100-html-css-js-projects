@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 48/100- OTP Verification Page</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #030303ec;
+    }
+
+    .container {
+        height: 250px;
+        width: 250px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 40px;
+        border-radius: 20px;
+        border: 2px solid rgb(88, 84, 84);
+        background: rgb(5, 5, 5);
+    }
+
+    div .inputs input {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        border: 1px solid rgba(193, 201, 241, 0.884);
+        border-radius: 10px;
+        text-align: center;
+        margin: 10px 0;
+        color: #8a9099;
+        background: transparent;
+    }
+
+    .container button {
+        width: 100px;
+        font-weight: 700;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background: #007bff;
+        color: white;
+        padding: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h2>OTP Verification</h2>
+        <div class="inputs">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+        </div>
+        <button>Verify</button>
+    </div>
+
+    <script>
+        let input = [...document.querySelectorAll('input')]
+        console.log(input);
+        input.forEach(item => {
+            item.addEventListener('keyup', () => {
+                if (input.indexOf(item) + 1 != input.length)
+                    input[input.indexOf(item) + 1].focus()
+
+            })
+        })
+    </script>
+</body>
+
+</html>

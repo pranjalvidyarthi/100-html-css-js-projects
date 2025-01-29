@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 34/100 - Creating Happy New 2025 Text Animation</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: cursive;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #262626;
+        min-height: 100vh;
+        overflow: hidden;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+
+    .box {
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .box::before{
+        content: 'Bye- Bye';
+        position: absolute;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+        font-size: 2em;
+        transition: 1s;
+    }
+
+    .box:hover::before{
+        transform: translateY(-100px);
+        opacity: 0;
+        filter: blur(30px);
+    }
+
+    .box::after{
+        content: 'Happy New Year';
+        position: absolute;
+        left: 0;
+        top: -0.75px;
+        width: 100%;
+        color: #fff;
+        text-align: center;
+        font-size: 2em;
+        transition: 1s;
+
+        transform: translateY(100px);
+        opacity: 0;
+        filter: blur(30px);
+    }
+
+    .box:hover::after{
+        transform: translateY(0px);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    .box span {
+        display: inline-block;
+        color: #fff;
+        font-size: 10em;
+        font-weight: bold;
+        transition: 2s;
+        filter: blur(1px);
+    }
+
+    .box span:last-child {
+        color: #ff26ef;
+    }
+
+    .box:hover span:last-child {
+        transform: rotate(45deg) translateY(-200px);
+        opacity: 0;
+    }
+
+    .box span:nth-child(3)::after{
+        content: '5';
+        position: absolute;
+        color: #1dff4e;
+        transform: rotate(-45deg) translateY(200px);
+        opacity: 0;
+        filter: blur(30px);
+        transition: 2s;
+    }
+
+    .box:hover span:nth-child(3)::after{
+
+        transform: rotate(0deg) translateY(0px);
+        opacity: 1;
+        filter: blur(0px);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <span>2</span>
+        <span>0</span>
+        <span>2</span>
+        <span>4</span>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 100/100 - Happy Republic Day</title>
+  </head>
+  <style>
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #000000;
+}
+.clr-orange,
+.clr-white,
+.clr-green {
+  height: 33.33vh;
+  width: 0;
+  position: absolute;
+  animation: grow 2s forwards;
+}
+.clr-orange {
+  background: linear-gradient(to bottom, #ff8011, #ffae4a);
+  top: 0;
+  left: 0;
+}
+.clr-white {
+  background: #ffffff;
+  top: 33.33vh;
+  right: 0;
+}
+.clr-green {
+  background: linear-gradient(to bottom, #75fc3b, #46ad1b);
+  bottom: 0;
+  left: 0;
+}
+@keyframes grow {
+  100% {
+    width: 100vw;
+  }
+}
+.ashoka-chakra {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 0;
+  animation: spin 3s 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    width: 30vmin;
+  }
+  100% {
+    width: 30vmin;
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+  </style>
+  <body>
+    <div class="clr-orange"></div>
+    <div class="clr-white"></div>
+    <div class="clr-green"></div>
+    <img class="ashoka-chakra" src="assets/img/ashoka chakra.png" />
+  </body>
+</html>

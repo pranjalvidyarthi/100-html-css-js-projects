@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 68/100 - Animated Skill Bar UI Design</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #070000;
+    }
+    .container{
+        position: relative;
+        width: 500px;
+    }
+    .container h2{
+        color: #fff;
+    }
+    .container .skills{
+        position: relative;
+        display: flex;
+        margin: 20px 0;
+        padding: 24px 10px 18px;
+        background: linear-gradient(#080505 0%, #020202ee 10% , #130101c9);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid #000000;
+        transition: 1s
+    }
+    .container .skills::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 50%;
+        z-index: 10;
+        background: rgba(255,255,255,0.1);
+    }
+    .container .skills .name{
+        position: relative;
+        width: 110px;
+        text-align: right;
+        margin-top: -2px;
+        color: #fff;
+        text-transform: capitalize;
+    }
+    .container .skills .value{
+        position: relative;
+        width: 40px;
+        text-align: left;
+        color: #fff;
+        margin-top: -2px;
+        text-transform: uppercase;
+    }
+    .container .skills .percent{
+        position: relative;
+        width: calc(100% - 150px);
+        height: 20px;
+        margin: 0 10px;
+        border-radius:90px;
+        background: #151515;
+        box-shadow: inset 0  0 10px #000;
+        overflow: hidden;
+    }
+    .container .skills .percent .progress{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100%;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: inset 0 0 2px #000;
+        animation:  animate 4s ease-in-out forwards;
+    }
+    @keyframes animate {
+        from{
+            width: 0;
+        }
+    }
+    .container:hover .skills{
+        opacity: 0.05;
+    }
+    .container .skills:hover{
+        opacity: 1;
+        filter: blur(0.2px);
+        transform: scale(1.2);
+        border: 2px solid lightgoldenrodyellow;
+         
+    }
+
+    
+</style>
+
+<body>
+<div class="container">
+    <h2>MY SKILLS</h2>
+    <div class="skills">
+        <span class="name">HTML</span>
+        <div class="percent">
+            <div class="progress" style="background: orange;"></div>
+        </div>
+        <span class="value">95%</span>
+    </div>
+
+    <div class="skills" >
+        <span class="name">CSS</span>
+        <div class="percent">
+            <div class="progress" style="width: 60%; background: magenta;"></div>
+        </div>
+        <span class="value">80%</span>
+    </div>
+
+    <div class="skills">
+        <span class="name">JavaScript</span>
+        <div class="percent">
+            <div class="progress" style="width: 50%; background: yellow;"></div>
+        </div>
+        <span class="value">65%</span>
+    </div>
+
+    <div class="skills">
+        <span class="name">Python</span>
+        <div class="percent">
+            <div class="progress" style="width: 65%; background: royalblue
+            ;"></div>
+        </div>
+        <span class="value">85%%</span>
+    </div>
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 76/100 - Login Form 2</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+
+    .container {
+        border: 2px solid transparent;
+        border-radius: 20px;
+        width: 400px;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(90deg, #0162c8, #55e7fc);
+        ;
+    }
+
+    .container form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .container input {
+        width: 300px;
+        height: 50px;
+        border: 2px solid transparent;
+        background: lightcyan;
+        border-radius: 20px;
+        font-size: 1.2em;
+        outline: none;
+    }
+
+    .container input::placeholder {
+        text-align: center;
+        color: #000;
+        font-size: 1em;
+        font-weight: 500;
+    }
+
+    .container .btn button {
+        height: 50px;
+        width: 150px;
+        border-radius: 30px;
+        color: #000000;
+        background: #ffffff;
+        font-size: 1em;
+        border: 2px solid transparent;
+        transition: 0.5s ease-in-out;
+    }
+
+    .container .btn button:hover {
+        background: lightblue;
+    }
+
+    .container .text {
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .container .text a {
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <form>
+            <input type="text" placeholder="Enter your UserName">
+            <input type="text" placeholder="Enter your name">
+            <input type="email" placeholder="Enter your email">
+            <input type="password" placeholder="Enter your password">
+            <input type="text" placeholder="Enter your number" maxlength="10">
+            <div class="btn">
+                <button>Submit</button>
+            </div>
+            <div class="text">
+                <p>Not remember the Password <a href="#">Forgot Password</a></p>
+                <p>not have an account! create now <a href="#">Sign up</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

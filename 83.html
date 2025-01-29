@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 83/100 - JavaScript Toggle Button </title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        background: #2b2b2b;
+        transition: 0.5s;
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #toggle{
+        
+        position: relative;
+        display: block;
+        width: 320px;
+        height: 160px;
+        border-radius: 160px;
+        background: #222;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+        inset 0 8px 8px rgba(0,0,0,0.1),
+        inset 0 -4px 4px rgba(0,0,0,0.1);
+    }
+    #toggle .indicator{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 160px;
+        height: 160px;
+        background: linear-gradient(to bottom, #444, #222);
+        border-radius: 50%;
+        transform: scale(0.9);
+        transition: 0.5s;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+        inset 0 4px 4px rgba(255,255,255,0.2),
+        inset 0 -4px 4px rgba(255,255,255,0.2);
+    }
+    #toggle.active {
+        background: #fff;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+        inset 0 4px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 4px rgba(255,255,255,0.2);
+    }
+        body.active{
+        background: #f8f8f8;
+    }
+    #toggle.active .indicator{
+        left: 160px;
+        background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+        inset 0 4px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 4px rgba(255,255,255,0.2);
+    }
+
+</style>
+<body>
+<div id="toggle">
+    <i class="indicator"></i>
+</div>
+<div class="text" id="text">
+<h2></h2>
+ </div>
+
+
+<script>
+    const body = document.querySelector('body');
+    const toggle = document.getElementById('toggle');
+    toggle.onclick = function(){
+        toggle.classList.toggle('active')
+        body.classList.toggle('active')
+    }
+</script>
+</body>
+</html>

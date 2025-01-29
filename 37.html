@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 37/100 - Sci-Fi Card</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: black;
+    }
+    .card{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 240px;
+        height: 320px;
+        background: var(--clr1);
+        box-shadow: 0 0 0 5px #0009,
+        0 10px 65px var(--clr1);
+        transition: 0.25s;
+    }
+    .card:hover{
+        background: var(--clr2);
+        box-shadow: 0 0 0 5px #0009,
+        0 10px 45px var(--clr2),
+        0 10px 95px var(--clr2);
+    }
+    .card h2{
+        font-size: 1.5em;
+        text-align: center;
+        line-height: 3em;
+        scale: 0;
+        transition: 0.5s;
+    }
+    .card:hover h2{
+        scale: 1;
+
+    }
+    .card h2 b{
+        font-size: 2.5em;
+    }
+    .card .clip{
+        position: absolute;
+        inset: 5px;
+        box-shadow: 0 0 0 2px #061206;
+    }
+    .card .clip span{
+        position: absolute;
+        inset: 0;
+        background: #020d1e;
+        transition: 0.25s;
+        z-index: 1;
+    }
+
+    .card .clip span:nth-child(1){
+        clip-path: polygon(0 5%, 0 95%, 50% 50%);
+    }
+    .card .clip span:nth-child(2){
+        clip-path: polygon(95% 0 , 5% 0 , 50% 50%);
+    }
+
+    .card .clip span:nth-child(3){
+        clip-path: polygon(100% 95%, 100% 5%, 50% 50%);
+    }
+    .card .clip span:nth-child(4){
+        clip-path: polygon(5% 100%, 95% 100%, 50% 50%);
+    }
+
+    .card:hover .clip span:nth-child(1){
+        clip-path: polygon(0 0 , 0 100%, 10% 50%);
+    }
+    .card:hover .clip span:nth-child(2){
+        clip-path: polygon(100% 0, 0% 0, 50% 10%);
+    }
+    .card:hover .clip span:nth-child(3){
+        clip-path: polygon(100% 100%, 100% 0%, 90% 50%);
+    }
+
+    .card:hover .clip span:nth-child(4){
+        clip-path: polygon(0% 100%, 100% 100%, 50% 90%);
+    }
+
+</style>
+
+<body>
+    <div class="card" style="--clr1:#d8d8d8ce; --clr2:#2341ca;">
+        <h2><b>Pranjal Tech<br>😎</b></h2>
+        <div class="clip">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</body>
+
+</html>

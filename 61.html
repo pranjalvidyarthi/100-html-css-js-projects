@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 61/100 - Shape Animation</title>
+</head>
+<style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+        body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        }
+
+        .shape{
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          border: 2px solid black;
+          animation: change 2s linear reverse infinite;
+        }
+        
+        @keyframes change {
+          0%{
+            opacity: 1;
+          }
+          80%{
+            border-radius: 50%;
+            background: royalblue;
+          }
+          
+        }
+</style>
+<body>
+  <div class="shape"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 57/100- Button Ripple Effect</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    .btn{
+        position: relative;
+        padding: 12px 36px;
+        margin: 10px 0;
+        color: white;
+        text-decoration: none;
+        font-size: 2em;
+        letter-spacing: 1px;
+        border-radius: 40px;
+        background: linear-gradient(90deg, #0162c8, #55e7fc);
+
+    }
+    span{
+        position: absolute;
+        background: #fff;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        border-radius: 50%;
+        animation: animate 1s linear infinite;
+    }
+    @keyframes animate {
+        0%{
+            width: 0px;
+            height: 0px;
+            opacity: 0.5;
+        }
+        100%{
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+        
+    }
+</style>
+<body>
+    <a href="#" class="btn">Click Me</a>
+    <script>
+        const button = document.querySelectorAll('a');
+        button.forEach(btn => {
+            btn.addEventListener('click' , function(e){
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                let ripples = document.createElement('span');
+                ripples.style.left = x + 'px';
+                ripples.style.top = y + 'px';
+                this.appendChild(ripples);
+
+                setTimeout(() => {
+                    ripples.remove()
+                }, 1000);
+            })
+            
+        });
+    </script>
+</body>
+</html>

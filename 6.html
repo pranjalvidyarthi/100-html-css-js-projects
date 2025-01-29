@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6- HTML Slider Range</title>
+</head>
+<body>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        
+        }
+
+        .slider-container{
+            text-align: center;
+            box-shadow: 0 0 10px #555;
+            padding: 20px 50px;
+        }
+        .slider{
+            width: 250px;
+        }
+</style>
+
+<div class="slider-container">
+    <h2>Adjust The Slider</h2>
+    <input type="range" class="slider" id="rangeInput" min="0" max="100" value="50">
+    <p>Value: <span id="rangeValue">50</span></p>
+</div>
+<script>
+    const rangeInput = document.getElementById('rangeInput');
+    const rangeValue = document.getElementById('rangeValue');
+    rangeInput.addEventListener('input', ()=>{
+        rangeValue.textContent = rangeInput.value;
+    });
+</script>
+</body>
+</html>

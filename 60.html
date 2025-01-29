@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 60/100 - Amazing Clock Design</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #000;
+    }
+    .box{
+        height: 5px;
+        width: 400px;
+        background: #2f2f2f;
+        padding: 8px;
+        position: relative;
+        overflow: hidden;
+        transition: 1s;
+    }
+    .box:hover{
+        height: 150px;
+    }
+    .in{
+        height: 100%;
+        width: 100%;
+        background: #111;
+        position: relative;
+        z-index: 99;
+    }
+    .box::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) rotate(45deg);
+        height: 600px;
+        width: 200px;
+        background: #fff;
+        animation: ani 2s linear infinite;
+    }
+
+    .container{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 400px;
+            height: 150px;
+        }
+        .hours , 
+        .minutes, 
+        .seconds{
+            font-size: 5em;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 3px 3px 2px rgb(2, 0, 0);
+            border-radius: 5px;
+            padding: 1px 5px;
+        }
+
+        .dots{
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            
+        }
+    @keyframes ani {
+        100%{
+            transform: translate(-50%,-50%) rotate(225deg);
+        }
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="in">
+            <div class="container">
+                <span class="hours" id="hour">00</span>
+                <span class="dots"><p>:</p></span>
+                <span class="minutes" id="minutes">00</span>
+                <span class="dots"><p>:</p></span>
+                <span class="seconds" id="seconds">00</span>
+                <span class="ampm" id="ampm">AM</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    setInterval(()=>{
+///digital clock
+      let hours = document.getElementById('hour');
+      let seconds = document.getElementById('seconds');
+      let minutes = document.getElementById('minutes');
+      let ampm = document.getElementById('ampm');
+
+      let h = new Date().getHours();
+      let m  = new Date().getMinutes();
+      let s = new Date().getSeconds();
+
+      let am = h >=12 ? "PM" : "AM";
+      //24 ===> 12 hr:
+      if (h > 12){
+          h = h-12;
+      }
+      //zero before single digit
+
+      h = (h < 10) ? "0" + h : h
+      m = (m < 10) ? "0" + m : m
+      s = (s < 10) ? "0" + s : s
+      hours.innerHTML =h;
+      minutes.innerHTML =m;
+      seconds.innerHTML= s;
+      ampm.innerHTML = am;
+})
+
+  </script>
+</html>

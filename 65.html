@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 65/100 - Amazing Hover Button</title>
+</head>
+<style>
+    body {
+        background: #000000;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        align-items: center;
+    }
+
+    .button {
+        border: .25em solid rgb(247, 37, 37);
+        padding: 1em 3em;
+        color: rgb(247, 37, 37);
+        font-size: 15px;
+        font-weight: bold;
+        color: #ffff;
+        background-color: rgb(230, 13, 13);
+        border-radius: 1em;
+        outline: none;
+        box-shadow: 0 0 1em .25em rgb(247, 37, 37),
+            0 0 4em 1em rgba(247, 17, 9, 0.568),
+            inset 0 0 .75em .25em rgb(247, 37, 37);
+        text-shadow: 0 0 .5em rgb(247, 37, 37);
+        position: relative;
+        transition: all 0.3s;
+    }
+
+    .button::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(247, 17, 9, 0.568);
+        filter: blur(2em);
+        opacity: .7;
+        transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+    }
+
+    .button:hover {
+        color: rgb(230, 13, 13);
+        background-color: rgb(247, 37, 37);
+        box-shadow: 0 0 1em .25em rgb(247, 37, 37),
+            0 0 4em 2em rgba(247, 17, 9, 0.678),
+            inset 0 0 .75em .25em rgb(247, 37, 37);
+        color: #1a0404d5;
+    }
+
+    .button:active {
+        box-shadow: 0 0 0.6em .25em rgb(247, 37, 37),
+            0 0 2.5em 2em rgba(247, 17, 9, 0.568),
+            inset 0 0 .5em .25em rgb(247, 37, 37);
+    }
+</style>
+<button class="button" role="button">
+    <span class="text">Hover Me</span>
+</button>
+
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 22/100</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: cursive;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #262626;
+        background-image: linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px);
+        background-size: 4vh 4vh;
+    }
+
+    h2 {
+        display: inline-block;
+        color: #fff;
+        font-size: 4em;
+
+        font-weight: bold;
+        padding: 0 100px;
+    }
+
+    h2 span {
+        position: relative;
+        color: transparent;
+        -webkit-text-stroke: 1px rgb(33, 216, 48);
+        line-height: 1.2em;
+        animation: displaytext 12s infinite;
+        animation-delay: calc(-3s * var(--i));
+        padding: 5px 10px;
+    }
+
+    @keyframes displaytext {
+        0% {
+            display: inline-block;
+        }
+
+        25%,
+        100% {
+            display: none;
+        }
+    }
+
+
+    h2 span::before {
+        content: attr(data-text);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        width: 0;
+        height: 100%;
+        color: #01fe87;
+
+        overflow: hidden;
+        white-space: nowrap;
+        border: 2px solid #01fe87;
+        box-sizing: border-box;
+        border-radius: 10px;
+        animation: ani 3s linear infinite;
+        padding: 5px 10px;
+        filter: drop-shadow(0 0 5px #01fe87) drop-shadow(0 0 25px #01fe87);
+
+    }
+
+
+    @keyframes ani {
+
+        0%,
+        10%,
+        100% {
+            width: 0;
+        }
+
+        70%,
+        90% {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+
+    <h2>I'm
+        <span style="--i:0" data-text="Student">Student
+        </span>
+        <span style="--i:1" data-text="Coder">Coder</span>
+        <span style="--i:2" data-text="Designer">Designer</span>
+        <span style="--i:3" data-text="YouTuber">YouTuber</span>
+    </h2>
+</body>
+
+</html>

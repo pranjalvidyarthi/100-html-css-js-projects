@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 50/100 - Awesome Magic Indicator using CSS & JavaScript</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    min-height: 100vh;
+}
+.container{
+    position: relative;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.container .box{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #333;
+    border-radius: 20px;
+}
+#marker{
+    position: absolute;
+    pointer-events: none;
+    background: royalblue;
+    width: 50px;
+    height: 50px;
+    transition: 0.2s;
+    border-radius: 20px;
+    animation: animate 2s linear infinite;
+}
+@keyframes animate {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    50%{
+        filter: hue-rotate(180deg);
+    }
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+</style>
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div id="marker"></div>
+    </div>
+    <script>
+        let marker = document.querySelector('#marker');
+        let item = document.querySelectorAll('.box');
+        function Indicator(e){
+            marker.style.left = e.offsetLeft+'px';
+            marker.style.top = e.offsetTop+'px';
+        }
+        item.forEach(link =>{
+            link.addEventListener('mouseover' , (e) =>{
+                Indicator(e.target)
+            })
+        })
+    </script>
+</body>
+</html>

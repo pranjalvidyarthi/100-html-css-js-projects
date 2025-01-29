@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Day 24 /100 - CSS loading</title>
+</head>
+<style>
+     *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+     }
+     body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: #000000;
+     }
+     .loading{
+          position: relative;
+          display: flex;
+     }
+     .loading span{
+          position: relative;
+          width: 20px;
+          height: 5px;
+     }
+     .loading span::before{
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: #0f0;
+          box-shadow: 0 0 5px #0f0,
+          0 0 15px rgb(190, 19, 19),
+          0 0 30px #0f0,
+          0 0 50px #0f0;
+          animation: animate 8s linear infinite;
+          animation-delay: calc(var(--i) * 0.1s);
+     }
+     @keyframes animate {
+          0%{
+               transform-origin: 0 20px;
+               filter: hue-rotate(0deg);
+          }
+          20%{
+               transform: rotate(calc(-90deg  * var(--i)));
+          }
+          60%{
+               transform: rotate(calc(0deg * var(--i)));
+          }
+          100%{
+               filter: hue-rotate(360deg);
+          }
+     }
+</style>
+<body>
+     <div class="loading">
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          <span style="--i:4;"></span>
+          <span style="--i:5;"></span>
+          <span style="--i:6;"></span>
+          <span style="--i:7;"></span>
+          <span style="--i:8;"></span>
+          <span style="--i:9;"></span>
+          <span style="--i:10;"></span>
+          <span style="--i:11;"></span>
+          <span style="--i:12;"></span>
+          <span style="--i:13;"></span>
+          <span style="--i:14;"></span>
+          <span style="--i:15;"></span>
+          <span style="--i:16;"></span>
+          <span style="--i:17;"></span>
+          <span style="--i:18;"></span>
+          <span style="--i:19;"></span>
+          <span style="--i:20;"></span>
+   
+     </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 38/100 - from Pranjal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #111, #222, #111);
+
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            width: 30vw;
+            height: 30vw;
+            border: 5vw solid #ff1062;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1em #222,
+                0 0 0 1.3em #fff;
+        }
+
+        h3 {
+            position: absolute;
+            font-size: 9vw;
+            color: #fff;
+            text-align: center;
+            line-height: 2vw;
+            z-index: 10;
+            transform: skewY(-7deg);
+            text-shadow: 1px 1px 0 #ccc,
+                2px 2px 0 #ccc,
+                3px 3px 0 #ccc,
+                4px 4px 0 #ccc,
+                5px 5px 0 #ccc,
+                10px 10px 0 rgba(0, 0, 0, 0.3);
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        h3 span {
+            font-weight: 700;
+            font-size: 3em;
+            text-shadow: 1px 1px 0 #ccc,
+                2px 2px 0 #ccc,
+                3px 3px 0 #ccc,
+                4px 4px 0 #ccc,
+                5px 5px 0 #ccc,
+                6px 6px 2px 2px 0 #ccc,
+                7px 7px 0 #ccc,
+                8px 8px 0 #ccc,
+                9px 9px 0 #ccc 20px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: skewY(-7deg) translate(0, -20px);
+            }
+
+            50% {
+                transform: skewY(-7deg) translate(0, 20px);
+            }
+        }
+
+        section i {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #fff,
+                0 0 80px #fff;
+
+            animation: animate linear infinite;
+
+        }
+
+        @keyframes animate {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h3>Merry Christmas<br><br><br><br><br>
+            <br<br><br>
+                <br<span></span>
+        </h3>
+        <script>
+            function stars() {
+                const count = 200;
+                const section = document.querySelector('section');
+                var i = 0;
+
+                while (i < count) {
+                    const star = document.createElement('i');
+                    const x = Math.floor(Math.random() * window.innerWidth)
+                    const y = Math.floor(Math.random() * window.innerHeight)
+
+                    const size = Math.random() * 4;
+                    star.style.left = x + 'px';
+                    star.style.top = y + 'px';
+                    star.style.width = 1 + size + 'px';
+
+                    star.style.height = 1 + size + 'px';
+                    const duration = Math.random() * 2;
+
+                    star.style.animationDuration = 2 + duration + 's';
+                    star.style.animationDelay = duration + 's';
+
+                    section.appendChild(star);
+                    i++
+                }
+
+            }
+
+            stars();
+        </script>
+    </section>
+</body>
+
+</html>

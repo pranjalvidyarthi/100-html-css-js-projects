@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 62/100- Underline Animation</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+       box-sizing: border-box;
+    }
+    body{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       min-height: 100vh;
+       background: #000;
+    }
+    h1{
+        font-weight: 600;
+        font-size: 5em;
+        position: relative;
+        color: #fff;
+
+    }
+    h1::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0;
+        transition: 0.5s ease-in-out;
+        background: #09b92f;
+        animation: ani 2s linear infinite;
+    }
+    @keyframes ani {
+        50%{
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <h1>Pranjal Tech</h1>
+</body>
+</html>

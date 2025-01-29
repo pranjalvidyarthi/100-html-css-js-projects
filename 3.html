@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day -003 Loading Bar</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #444;
+    }
+    .loader{
+        width: 300px;
+        position: relative;
+    }
+    .loader .loading1{
+        position: relative;
+        width: 100%;
+        height: 25px;
+        border: 1px solid gray;
+        border-radius: 25px;
+    }
+    .loader .loading1::before{
+        content: '';
+        display: block;
+        position: absolute;
+        width: 0;
+        height: 100%;
+        background: red;
+        border-radius: 25px;
+        animation: load 7s linear infinite;
+    }
+    .loading2{
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+    @keyframes load {
+        0%{
+            width: 0%;
+        }
+        40.5%{
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <div class="loader">
+        <div class="loading1"></div>
+        <div class="loading2">Loading</div>
+    </div>
+</body>
+</html>

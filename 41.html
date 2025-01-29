@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 41/100 - 3d kEYBOARD KEYS UI DESIGN</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: cursive;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #232323;
+    }
+    span{
+        position: relative;
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        padding: 8px 15px;
+        margin: 8px 4px;
+        border-radius: 10px;
+        background: linear-gradient(180deg , #282828 , #202020);
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.75),
+        10px 20px 25px rgba(0,0,0,0.4);
+        overflow: hidden;
+    }
+    span::before{
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 4px;
+        bottom: 14px;
+        right: 12px;
+        background: linear-gradient(90deg , #232323 , #4a4a4a);
+        border-radius: 10px;
+        box-shadow: -10px -10px 10px rgba(255,255,255,0.25),
+        10px 5px 10px rgba(0,0,0,0.15);
+    }
+
+    span i{
+        position: relative;
+        color: #fff;
+        font-size: 1.6em;
+        font-style: normal;
+    }
+</style>
+<body>
+    <div>
+    <span><i>P</i></span>
+    <span><i>R</i></span>
+    <span><i>A</i></span>
+    <span><i>N</i></span>
+    <span><i>J</i></span>
+    <span><i>A</i></span>
+    <span><i>L</i></span><br>
+    <span><i>T</i></span>
+    <span><i>E</i></span>
+    <span><i>C</i></span>
+    <span><i>H</i></span>
+    </div>
+</body>
+</html>

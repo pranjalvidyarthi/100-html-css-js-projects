@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 53/100- Elastic Line Animation</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: black;
+}
+svg{
+    position: absolute;
+
+    width: 400px;
+    fill: none;
+}
+svg:nth-child(2){
+    filter: blur(40px);
+}
+svg path{
+    d: path("M0,25 C150, 110 150, -60 300,25");
+    stroke: #ff0092;
+    stroke-width: 50;
+    stroke-linecap: round;
+    transform: translate(50px ,50%);
+    animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+    0%{
+        stroke: #1d38b4;
+        d:path("M0,25 C150, 110 150, -60 300,25")
+    }
+
+    50%{
+        d:path("M0,25 C160, -50 140, 110 300,25")
+    }
+}
+</style>
+<body>
+<svg>
+    <path></path>
+</svg>
+<svg>
+    <path></path>
+</svg>
+</body>
+</html>
