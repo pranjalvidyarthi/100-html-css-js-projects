@@ -6,7 +6,7 @@ Welcome to my 100 Days of HTML, CSS, and JavaScript Projects series! 🚀 This r
     100 mini-projects covering UI design, animations, interactive elements, and web components
     Well-structured code with comments for easy understanding
     Beginner to advanced level projects to boost your frontend journey
-
+![](https://unsplash.com/photos/text-NzERTNpnaDw)<br/>
 ## 🎥 Watch on YouTube
 
 Each project comes with a detailed tutorial on YouTube! Check out the series here: https://youtube.com/@pranjaltechnology
