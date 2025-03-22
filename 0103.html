@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gif for you</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Noto+Color+Emoji&display=swap");
+:root {
+  --rotate-speed: 50s;
+  --primary-col: #001f3f;
+  --secondary-col: #3a6d8c;
+  --tertiary-col: #6a9ab0;
+}
+div {
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+body {
+  font-family: "Noto Color Emoji", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1d1e22;
+  font-size: 16px;
+}
+p {
+  text-align: center;
+  font-size: 2.5rem;
+  color: white;
+  font-family: "Mountains of Christmas", serif;
+  font-weight: 700;
+  font-style: normal;
+  display: none;
+  color: var(--tertiary-col);
+  text-shadow: 2px 2px 4px var(--primary-col), 0 0 2px var(--primary-col),
+    0 0 1px var(--primary-col), 3px 3px 5px white, 0 0 3px white, 0 0 2px white;
+}
+.active p {
+  display: flex;
+}
+span {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 400;
+  font-style: normal;
+}
+.cube-container {
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg) rotateY(45deg);
+  animation: rotate var(--rotate-speed) infinite linear;
+  transition: transform 0.6s;
+}
+@keyframes rotate {
+  from {
+    transform: rotateX(-30deg) rotateY(45deg) rotateY(-45deg);
+  }
+  to {
+    transform: rotateX(-30deg) rotateY(45deg) rotateY(405deg);
+  }
+}
+.other {
+  background: none !important;
+  border: none !important;
+  display: flex !important;
+  place-items: center;
+  place-content: center;
+}
+#gift {
+  animation: anti-rotate-gift var(--rotate-speed) infinite linear;
+  width: fit-content !important;
+}
+@keyframes anti-rotate-gift {
+  to {
+    transform: rotateX(-30deg) rotateY(45deg) rotateY(-405deg);
+  }
+}
+#bow {
+  width: fit-content !important;
+  font-size: 5em;
+  transform: translateX(-45px) translateY(-105px) rotateX(60deg) rotateY(-45deg);
+}
+
+.cube.active #bow {
+  animation: fly-up-bow 0.6s forwards;
+}
+@keyframes fly-up-bow {
+  100% {
+    transform: translateX(-45px) translateY(-235px) rotateX(60deg)
+      rotateY(-45deg);
+  }
+}
+
+.cube > div.lil {
+  height: 10%;
+}
+.cube > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      transparent 0,
+      transparent 20px,
+      #dc143c 0,
+      #dc143c 25px,
+      transparent 0,
+      transparent 100%
+    ),
+    radial-gradient(
+      transparent 0,
+      transparent 20px,
+      #dc143c 0,
+      #dc143c 25px,
+      transparent 0,
+      transparent 100%
+    ),
+    radial-gradient(
+      transparent 0,
+      transparent 20px,
+      #3cb371 0,
+      #3cb371 25px,
+      transparent 0,
+      transparent 100%
+    ),
+    radial-gradient(
+      transparent 0,
+      transparent 20px,
+      #3cb371 0,
+      #3cb371 25px,
+      transparent 0,
+      transparent 100%
+    ),
+    #fde4e3;
+  /*   ,
+  linear-gradient(135deg, #5bf2f5 5%, #5bf2f5 15%); */
+
+  background-blend-mode: multiply;
+  background-size: 80px 80px;
+  background-position: 40px 40px, 40px 0, 0 0, 0 40px;
+  border: 1.5px solid black;
+}
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.top h1 {
+  transform: rotateX(90deg) translateZ(200px);
+}
+.cube.active .top {
+  animation: fly-up 0.6s forwards;
+}
+@keyframes fly-up {
+  100% {
+    transform: rotateX(90deg) translateZ(230px);
+  }
+}
+.top-back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+.cube.active .top-back {
+  animation: fly-up-top-back 0.6s forwards;
+}
+@keyframes fly-up-top-back {
+  100% {
+    transform: rotateY(180deg) translateZ(100px) translateY(-130px);
+  }
+}
+
+.top-left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.cube.active .top-left {
+  animation: fly-up-top-left 0.6s forwards;
+}
+@keyframes fly-up-top-left {
+  100% {
+    transform: rotateY(-90deg) translateZ(100px) translateY(-130px);
+  }
+}
+
+.top-right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.cube.active .top-right {
+  animation: fly-up-top-right 0.6s forwards;
+}
+@keyframes fly-up-top-right {
+  100% {
+    transform: rotateY(90deg) translateZ(100px) translateY(-130px);
+  }
+}
+
+.top-front {
+  transform: translateZ(100px);
+}
+.cube.active .top-front {
+  animation: fly-up-top-front 0.6s forwards;
+}
+@keyframes fly-up-top-front {
+  100% {
+    transform: translateZ(100px) translateY(-130px);
+  }
+}
+/*  */
+.front {
+  transform: translateZ(100px);
+  transform-origin: bottom;
+}
+.cube.active .front {
+  animation: front-drop 0.6s forwards;
+}
+@keyframes front-drop {
+  100% {
+    transform: translateZ(100px) rotateX(-90deg);
+  }
+}
+
+.back {
+  transform: rotateY(180deg) translateZ(100px);
+  transform-origin: bottom;
+}
+.cube.active .back {
+  animation: back-drop 0.6s forwards;
+}
+@keyframes back-drop {
+  100% {
+    transform: rotateY(180deg) translateZ(100px) rotateX(-90deg);
+  }
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+  transform-origin: bottom;
+}
+
+.cube.active .left {
+  animation: left-drop 0.6s forwards;
+}
+
+@keyframes left-drop {
+  100% {
+    transform: rotateY(-90deg) translateZ(100px) rotateX(-90deg);
+  }
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+  transform-origin: bottom;
+}
+
+.cube.active .right {
+  animation: right-drop 0.6s forwards;
+  animation: rotate infinate;
+}
+
+@keyframes right-drop {
+  100% {
+    transform: rotateY(90deg) translateZ(100px) rotateX(-90deg);
+  }
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(102px);
+  box-shadow: 0 0 20em 50em rgba(0, 0, 0, 0.4);
+  z-index: -20;
+}
+
+    </style>
+</head>
+<body>
+    
+
+<div class="cube-container">
+    <div class="cube" id="cube">
+      <div class="top"></div>
+  
+      <div class="lil top-right"></div>
+      <div class="lil top-left"></div>
+      <div class="lil top-back"></div>
+      <div class="lil top-front"></div>
+  
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+  
+      <div class="other" id="bow">🎀</div>
+      <div class="other" id="gift">😀</div>
+    </div>
+  </div><div class="cube-container">
+    <div class="cube" id="cube">
+      <div class="top"></div>
+  
+      <div class="lil top-right"></div>
+      <div class="lil top-left"></div>
+      <div class="lil top-back"></div>
+      <div class="lil top-front"></div>
+  
+      <div class="front"></div>
+      <div class="back"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="bottom"></div>
+  
+      <div class="other" id="bow">🎀</div>
+      <div class="other" id="gift">😀</div>
+    </div>
+  </div>
+
+</body>
+<script>
+    function changeGift() {
+  const giftDiv = document.getElementById("gift");
+  const gifts = {
+    1: { emoji: "🌹", text: "A single rose for you" },
+    2: { emoji: "🍫", text: "sweet chocolates" },
+    3: { emoji: "🎶", text: "love songs to brighten your day" },
+    4: { emoji: "✨", text: "magical moments with you" },
+    5: { emoji: "💎", text: "sparkling compliments for your beauty" },
+    6: { emoji: "☕", text: "cozy coffee dates" },
+    7: { emoji: "🌷", text: "tulips as fresh as you" },
+    8: { emoji: "🎨", text: "beautiful colors that remind me of you"},
+    9: { emoji: "💌", text: "heartfelt letters" },
+    10: { emoji: "🎁", text: "thoughtful gifts" },
+    11: { emoji: "🌙", text: "moonlit nights to dream of you" },
+    12: { emoji: "❤️", text: "reasons why I adore you" }
+  };
+
+  const days = Object.keys(gifts);
+  const randomDay = days[Math.floor(Math.random() * days.length)];
+  const { emoji, text } = gifts[randomDay];
+
+  giftDiv.innerHTML = `<span>${emoji}<span><p>${text}</p>`;
+}
+
+document.getElementById("cube").addEventListener("click", function () {
+  this.classList.toggle("active");
+  if (!this.classList.contains("active")) {
+    changeGift();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  changeGift();
+
+  const cube = document.getElementById("cube");
+  cube.classList.add("active");
+  setTimeout(() => {
+    cube.classList.remove("active");
+  }, 3000);
+});
+
+</script>
+</html>

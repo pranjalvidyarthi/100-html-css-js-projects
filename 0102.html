@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Shader-Powered 3D Vortex</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #000;
+    }
+    canvas {
+        width: 100%;
+        height: 100vh;
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<script type="importmap">
+{
+    "imports": {
+        "three": "https://unpkg.com/three@0.162.0/build/three.module.js",
+        "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.162.0/examples/jsm/controls/OrbitControls.js",
+        "three/addons/postprocessing/EffectComposer.js": "https://unpkg.com/three@0.162.0/examples/jsm/postprocessing/EffectComposer.js",
+        "three/addons/postprocessing/RenderPass.js": "https://unpkg.com/three@0.162.0/examples/jsm/postprocessing/RenderPass.js",
+        "three/addons/postprocessing/UnrealBloomPass.js": "https://unpkg.com/three@0.162.0/examples/jsm/postprocessing/UnrealBloomPass.js"
+    }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+camera.position.set(0, 5, 20);
+controls.update();
+
+const nebulaGeometry = new THREE.SphereGeometry(100, 64, 64);
+const nebulaMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        time: { value: 0 }
+    },
+    vertexShader: `
+        varying vec3 vPosition;
+        void main() {
+            vPosition = position;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float time;
+        varying vec3 vPosition;
+        float noise(vec3 p) {
+            return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453);
+        }
+        void main() {
+            vec3 p = normalize(vPosition) * 10.0;
+            float n = noise(p + vec3(time * 0.1));
+            vec3 color = mix(vec3(0.2, 0.1, 0.4), vec3(0.1, 0.4, 0.3), n);
+            float glow = pow(1.0 - length(vPosition) / 100.0, 2.0);
+            gl_FragColor = vec4(color * glow, 0.3);
+        }
+    `,
+    side: THREE.BackSide,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+});
+const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+scene.add(nebula);
+
+const torusGeometry = new THREE.TorusGeometry(6, 1.5, 32, 100);
+const torusMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        time: { value: 0 }
+    },
+    vertexShader: `
+        varying vec3 vNormal;
+        varying vec3 vPosition;
+        uniform float time;
+        void main() {
+            vNormal = normal;
+            vPosition = position;
+            vec3 pos = position;
+            pos *= 1.0 + sin(time * 2.0 + length(position)) * 0.15;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float time;
+        varying vec3 vNormal;
+        varying vec3 vPosition;
+        void main() {
+            float glow = sin(time * 2.5 + vPosition.x * 1.5) * 0.5 + 0.5;
+            vec3 baseColor = vec3(1.0, 0.2, 0.8);
+            vec3 pulseColor = vec3(0.4, 0.1, 1.0);
+            vec3 color = mix(baseColor, pulseColor, glow);
+            float edge = smoothstep(0.4, 0.6, abs(vNormal.z));
+            gl_FragColor = vec4(color * edge, 1.0);
+        }
+    `,
+    side: THREE.DoubleSide
+});
+const torusCore = new THREE.Mesh(torusGeometry, torusMaterial);
+scene.add(torusCore);
+
+const innerSphereGeometry = new THREE.SphereGeometry(2, 32, 32);
+const innerSphereMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        time: { value: 0 }
+    },
+    vertexShader: `
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        void main() {
+            vNormal = normal;
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float time;
+        varying vec3 vNormal;
+        varying vec2 vUv;
+        
+        void main() {
+            vec2 uv = vUv;
+            float t = time * 2.0;
+            
+            float pattern = sin(uv.x * 20.0 + t) * sin(uv.y * 20.0 - t);
+            pattern += sin(uv.x * 15.0 - t * 1.5) * sin(uv.y * 15.0 + t * 1.5) * 0.5;
+            
+            float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 2.0);
+            
+            vec3 baseColor = vec3(0.4, 0.1, 1.0);
+            vec3 glowColor = vec3(1.0, 0.2, 0.8);
+            vec3 finalColor = mix(baseColor, glowColor, pattern);
+            
+            float alpha = (pattern * 0.5 + fresnel * 0.7) * 0.8;
+            gl_FragColor = vec4(finalColor, alpha);
+        }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+});
+const innerSphere = new THREE.Mesh(innerSphereGeometry, innerSphereMaterial);
+scene.add(innerSphere);
+
+const sphereCount = 12;
+const spheres = [];
+const trails = [];
+const sphereGeometry = new THREE.SphereGeometry(0.8, 32, 32);
+const sphereMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        time: { value: 0 }
+    },
+    vertexShader: `
+        varying vec3 vPosition;
+        void main() {
+            vPosition = position;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float time;
+        varying vec3 vPosition;
+        void main() {
+            float pulse = sin(time * 4.0 + vPosition.y * 2.0) * 0.5 + 0.5;
+            vec3 color = vec3(0.1, 0.8, 0.2) * (pulse * 0.9 + 0.4);
+            float edge = smoothstep(0.3, 0.5, length(vPosition) / 0.8);
+            gl_FragColor = vec4(color * edge, 0.9);
+        }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+});
+
+for (let i = 0; i < sphereCount; i++) {
+    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    const trailGeometry = new THREE.BufferGeometry();
+    const trailPositions = new Float32Array(100 * 3);
+    const trailMaterial = new THREE.LineBasicMaterial({ 
+        color: 0x33ff66, 
+        transparent: true, 
+        opacity: 0.3,
+        blending: THREE.AdditiveBlending 
+    });
+    const trail = new THREE.Line(trailGeometry, trailMaterial);
+    
+    sphere.userData = {
+        orbitAngle: Math.random() * Math.PI * 2,
+        orbitSpeed: 0.05 + Math.random() * 0.03,
+        orbitRadiusX: 10 + Math.random() * 4,
+        orbitRadiusZ: 8 + Math.random() * 3,
+        trailPositions: trailPositions,
+        trailIndex: 0
+    };
+    spheres.push(sphere);
+    trails.push(trail);
+    scene.add(sphere);
+    scene.add(trail);
+}
+
+const vortexCount = 600;
+const vortices = new THREE.Group();
+const vortexGeometry = new THREE.BufferGeometry();
+const vortexPositions = new Float32Array(vortexCount * 3);
+const vortexColors = new Float32Array(vortexCount * 3);
+const vortexSizes = new Float32Array(vortexCount);
+for (let i = 0; i < vortexCount; i++) {
+    vortexPositions[i * 3] = 0;
+    vortexPositions[i * 3 + 1] = 0;
+    vortexPositions[i * 3 + 2] = 0;
+    const color = new THREE.Color().setHSL(Math.random(), 0.7, 0.6);
+    vortexColors[i * 3] = color.r;
+    vortexColors[i * 3 + 1] = color.g;
+    vortexColors[i * 3 + 2] = color.b;
+    vortexSizes[i] = 0.3 + Math.random() * 0.2;
+}
+vortexGeometry.setAttribute('position', new THREE.BufferAttribute(vortexPositions, 3));
+vortexGeometry.setAttribute('customColor', new THREE.BufferAttribute(vortexColors, 3));
+vortexGeometry.setAttribute('size', new THREE.BufferAttribute(vortexSizes, 1));
+const vortexMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        time: { value: 0 }
+    },
+    vertexShader: `
+        attribute vec3 customColor;
+        attribute float size;
+        varying vec3 vColor;
+        varying float vAlpha;
+        void main() {
+            vColor = customColor;
+            vAlpha = 1.0 - length(position) / 20.0;
+            gl_PointSize = size * (400.0 / -modelViewMatrix[3][2]);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+    `,
+    fragmentShader: `
+        uniform float time;
+        varying vec3 vColor;
+        varying float vAlpha;
+        void main() {
+            vec2 uv = gl_PointCoord - 0.5;
+            float dist = length(uv);
+            if (dist > 0.5) discard;
+            float shimmer = sin(time * 8.0 + dist * 15.0) * 0.3 + 0.7;
+            float glow = exp(-dist * 5.0);
+            gl_FragColor = vec4(vColor * shimmer, glow * vAlpha * 0.8);
+        }
+    `,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+});
+const vortexSystem = new THREE.Points(vortexGeometry, vortexMaterial);
+vortices.add(vortexSystem);
+scene.add(vortices);
+
+const vortexData = Array(vortexCount).fill().map(() => ({
+    angle: Math.random() * Math.PI * 2,
+    speed: 0.06 + Math.random() * 0.04,
+    distance: 0,
+    maxDistance: 15 + Math.random() * 5,
+    twist: 0.4 + Math.random() * 0.3
+}));
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+const pointLight1 = new THREE.PointLight(0xffe6ff, 2.0, 100);
+pointLight1.position.set(15, 15, 15);
+scene.add(pointLight1);
+const pointLight2 = new THREE.PointLight(0xe6ffec, 1.6, 100);
+pointLight2.position.set(-15, -15, -15);
+scene.add(pointLight2);
+const pointLight3 = new THREE.PointLight(0xe6f0ff, 1.2, 100);
+pointLight3.position.set(0, 20, -10);
+scene.add(pointLight3);
+
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.4, 0.6, 0.85);
+bloomPass.threshold = 0.2;
+bloomPass.strength = 1.6;
+bloomPass.radius = 0.6;
+composer.addPass(bloomPass);
+
+let time = 0;
+function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+
+    nebulaMaterial.uniforms.time.value = time;
+
+    torusCore.rotation.y += 0.005;
+    torusCore.rotation.z += 0.003;
+    torusMaterial.uniforms.time.value = time;
+
+    innerSphereMaterial.uniforms.time.value = time;
+
+    spheres.forEach((sphere, i) => {
+        const data = sphere.userData;
+        data.orbitAngle += data.orbitSpeed;
+        sphere.position.x = Math.cos(data.orbitAngle) * data.orbitRadiusX;
+        sphere.position.z = Math.sin(data.orbitAngle) * data.orbitRadiusZ;
+        sphere.position.y = Math.sin(data.orbitAngle * 1.5 + time) * 3;
+        sphere.material.uniforms.time.value = time;
+
+        const trail = trails[i];
+        const pos = data.trailPositions;
+        const idx = data.trailIndex * 3;
+        pos[idx] = sphere.position.x;
+        pos[idx + 1] = sphere.position.y;
+        pos[idx + 2] = sphere.position.z;
+        data.trailIndex = (data.trailIndex + 1) % 100;
+        trail.geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        trail.geometry.attributes.position.needsUpdate = true;
+    });
+
+    const vortexPosArray = vortexSystem.geometry.attributes.position.array;
+    for (let i = 0; i < vortexCount; i++) {
+        const data = vortexData[i];
+        data.distance += data.speed;
+        const angle = data.angle + time * data.twist;
+        vortexPosArray[i * 3] = Math.cos(angle) * data.distance * (1.0 + data.twist);
+        vortexPosArray[i * 3 + 1] = Math.sin(angle) * data.distance * 0.6;
+        vortexPosArray[i * 3 + 2] = Math.sin(angle + data.twist) * data.distance;
+        if (data.distance > data.maxDistance) {
+            data.distance = 0;
+        }
+    }
+    vortexSystem.geometry.attributes.position.needsUpdate = true;
+    vortexMaterial.uniforms.time.value = time;
+
+    controls.update();
+    composer.render();
+}
+
+animate();
+
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
