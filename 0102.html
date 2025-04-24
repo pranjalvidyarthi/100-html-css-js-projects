@@ -232,6 +232,7 @@ const vortexSizes = new Float32Array(vortexCount);
 for (let i = 0; i < vortexCount; i++) {
     vortexPositions[i * 3] = 0;
     vortexPositions[i * 3 + 1] = 0;
+    
     vortexPositions[i * 3 + 2] = 0;
     const color = new THREE.Color().setHSL(Math.random(), 0.7, 0.6);
     vortexColors[i * 3] = color.r;
